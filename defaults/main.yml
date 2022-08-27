@@ -1,4 +1,6 @@
 ---
+base_hostname: "ansible-test"
+
 base_locale:
   - "fr_FR.UTF-8"
   - "en_US.UTF-8"
@@ -46,7 +48,7 @@ base_users:
     groups: sudo
     state: present
 
-base_shell: 
+base_shell:
   - name: root
     shell: "/usr/bin/fish"
   - name: enzo

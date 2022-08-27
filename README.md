@@ -12,6 +12,7 @@ Role Variables
 
 | Variable       | Required | type   | Comments |
 |----------------|----------|--------|----------|
+| base_hostname  | no       | string |          |
 | base_locale    | no       | list   |          |
 | base_timezone  | np       | string |          |
 | base_repos     | no       | list   |          |
