@@ -1,0 +1,59 @@
+---
+- name: Ensure a locale exists
+  community.general.locale_gen:
+    name: "{{ item }}"
+    state: present
+  when: base_locale
+  with_items: "{{ base_locale }}"
+  tags: base:locale
+
+- name: Set timezone
+  community.general.timezone:
+    name: "{{ base_timezone }}"
+  when: base_timezone
+  tags: base:timezone
+
+- name: Add repos
+  community.general.apt_repo:
+    repo: "{{ item.repo }}"
+    state: "{{ item.state }}"
+    update: "{{ item.update }}"
+  when: base_repos
+  loop: "{{ base_repos }}"
+  tags: base:repos
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    update_cache: yes
+  when: base_pkg
+  loop: "{{ base_pkg }}"
+  tags: base:pkg
+
+- name: Add users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups }}"
+    append: yes
+    state: "{{ item.state }}"
+  when: base_users
+  loop: "{{ base_users }}"
+  tags: base:users
+
+- name: Set shell for users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell }}"
+  when: base_shell
+  with_items: "{{ base_shell }}"
+  tags: base:shell
+
+- name: Set swappiness to 0
+  ansible.posix.sysctl:
+    name: vm.swappiness
+    value: "0"
+    state: present
+    reload: yes
+  when: base_swapiness
+  tags: base:swap
