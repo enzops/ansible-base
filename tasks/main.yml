@@ -26,7 +26,7 @@
   ansible.builtin.apt:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
-    update_cache: yes
+    update_cache: "yes"
   when: base_pkg
   loop: "{{ base_pkg }}"
   tags: base:pkg
@@ -35,7 +35,7 @@
   ansible.builtin.user:
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
-    append: yes
+    append: "yes"
     state: "{{ item.state }}"
   when: base_users
   loop: "{{ base_users }}"
@@ -54,6 +54,11 @@
     name: vm.swappiness
     value: "0"
     state: present
-    reload: yes
+    reload: "yes"
   when: base_swapiness
   tags: base:swap
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ base_hostname }}"
+  when: base_hostname
