@@ -62,3 +62,25 @@
   ansible.builtin.hostname:
     name: "{{ base_hostname }}"
   when: base_hostname
+  tags: base:hostname
+
+- name: Set sudoers
+  community.general.sudoers:
+    name: "{{ item.name }}"
+    user: "{{ item.user }}"
+    state: "{{ item.state }}"
+    commands: "{{ item.commands }}"
+  when: base_sudoers
+  loop: "{{ base_sudoers }}"
+  tags: base:sudoers
+
+- name: Set authorized keys
+  ansible.posix.authorized_key:
+    user: "{{ item.user }}"
+    state: "{{ item.state }}"
+    key: "{{ item.key }}"
+    manage_dir: "{{ item.managedir | default(omit) }}"
+    exclusive: no
+  when: base_authorizedkeys
+  loop: "{{ base_authorizedkeys }}"
+  tags: base:authorizedkeys

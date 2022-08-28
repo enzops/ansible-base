@@ -10,16 +10,18 @@ debian-family
 Role Variables
 --------------
 
-| Variable       | Required | type   | Comments |
-|----------------|----------|--------|----------|
-| base_hostname  | no       | string |          |
-| base_locale    | no       | list   |          |
-| base_timezone  | np       | string |          |
-| base_repos     | no       | list   |          |
-| base_pkg       | no       | list   |          |
-| base_users     | no       | list   |          |
-| base_shell     | no       | list   |          |
-| base_swapiness | no       | bool   |          |
+| Variable            | Required | type   | Comments |
+|---------------------|----------|--------|----------|
+| base_hostname       | no       | string |          |
+| base_locale         | no       | list   |          |
+| base_timezone       | np       | string |          |
+| base_repos          | no       | list   |          |
+| base_pkg            | no       | list   |          |
+| base_users          | no       | list   |          |
+| base_shell          | no       | list   |          |
+| base_swapiness      | no       | bool   |          |
+| base_sudoers        | no       | list   |          |
+| base_authorizedkeys | no       | list   |          |
 
 Dependencies
 ------------
