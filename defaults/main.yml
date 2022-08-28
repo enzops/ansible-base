@@ -1,5 +1,5 @@
 ---
-base_hostname: "ansible-test"
+base_hostname: ""
 
 base_locale:
   - "fr_FR.UTF-8"
@@ -43,15 +43,12 @@ base_pkg:
   - name: fish
     state: present
 
-base_users:
-  - name: enzo
-    groups: sudo
-    state: present
+base_users: []
 
-base_shell:
-  - name: root
-    shell: "/usr/bin/fish"
-  - name: enzo
-    shell: "/usr/bin/fish"
+base_shell: []
 
 base_swapiness: 1
+
+base_sudoers: []
+
+base_authorizedkeys: []
